@@ -11,11 +11,14 @@ Ce projet en C++ détermine la position possible d'une maison de brigand en util
 
 Le déterminant permet de vérifier si trois points sont alignés :
 \[
-\text{Déterminant} = (x_2 - x_1)(y_3 - y_2) - (y_2 - y_1)(x_3 - x_2)
+\text{Déterminant} = (x2 - x1)*(y3 - y2) - (y2 - y1)*(x3 - x2)
 \]
 - Si le déterminant est égal à 0, les points sont alignés.
 
 ### Formule pour le centre du cercle circonscrit
+![Capture d'écran 2024-10-13 192754](https://github.com/user-attachments/assets/b8eddea6-94ce-45c2-822f-1dee1021d4f5)
+
+
 
 Lorsque les points ne sont pas alignés, les coordonnées \((c_x, c_y)\) du centre du cercle circonscrit sont données par :
 \[
