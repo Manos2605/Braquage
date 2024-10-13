@@ -20,14 +20,6 @@ Le déterminant permet de vérifier si trois points sont alignés :
 
 
 
-Lorsque les points ne sont pas alignés, les coordonnées \((c_x, c_y)\) du centre du cercle circonscrit sont données par :
-\[
-c_x = \frac{(x_1^2 + y_1^2)(y_2 - y_3) + (x_2^2 + y_2^2)(y_3 - y_1) + (x_3^2 + y_3^2)(y_1 - y_2)}{2 \cdot \text{Déterminant}}
-\]
-\[
-c_y = \frac{(x_1^2 + y_1^2)(x_3 - x_2) + (x_2^2 + y_2^2)(x_1 - x_3) + (x_3^2 + y_3^2)(x_2 - x_1)}{2 \cdot \text{Déterminant}}
-\]
-
 ### Exécution
 ```
 braquage :
