@@ -1,10 +1,10 @@
 #include<iostream>
 
 // fonction pour vérifier si trois points sont alignés
-bool points_Alignes(double x1, double y1, double x2, double y2, double x3, double y3) {
-    // utilise le déterminant de la matrice formée par ces trois points.
-    double determinant = x1 * (y2 - y3) + x2 * (y3 - y1) + x3 * (y1 - y2);
-    if (determinant == 0.0){
+bool points_Alignes(float x1, float y1, float x2, float y2, float x3, float y3) {
+    // calcul du déterminant
+    float determinant = (x2 - x1) * (y3 - y2) - (y2 - y1) * (x3 - x2);
+    if (determinant == 0.0f){
         return true;
     }else{
         return false;
@@ -13,12 +13,12 @@ bool points_Alignes(double x1, double y1, double x2, double y2, double x3, doubl
 }
 
 // fonction pour calculer le centre du cercle circonscrit à trois points non alignés
-void Centre_points(double x1, double y1, double x2, double y2, double x3, double y3, double &cx, double &cy) {
-    double d = 2 * (x1 * (y2 - y3) + x2 * (y3 - y1) + x3 * (y1 - y2));
+void Centre_points(float x1, float y1, float x2, float y2, float x3, float y3, float &cx, float &cy) {
+    float d = 2 * (x1 * (y2 - y3) + x2 * (y3 - y1) + x3 * (y1 - y2));
 
     // coefficients pour trouver les coordonnées du centre
-    double ux = ((x1 * x1 + y1 * y1) * (y2 - y3) + (x2 * x2 + y2 * y2) * (y3 - y1) + (x3 * x3 + y3 * y3) * (y1 - y2)) / d;
-    double uy = ((x1 * x1 + y1 * y1) * (x3 - x2) + (x2 * x2 + y2 * y2) * (x1 - x3) + (x3 * x3 + y3 * y3) * (x2 - x1)) / d;
+    float ux = ((x1 * x1 + y1 * y1) * (y2 - y3) + (x2 * x2 + y2 * y2) * (y3 - y1) + (x3 * x3 + y3 * y3) * (y1 - y2)) / d;
+    float uy = ((x1 * x1 + y1 * y1) * (x3 - x2) + (x2 * x2 + y2 * y2) * (x1 - x3) + (x3 * x3 + y3 * y3) * (x2 - x1)) / d;
 
     cx = ux;
     cy = uy;
@@ -29,8 +29,8 @@ int main(){
 
 
     // tableaux pour stocker les coordonnées des lieux de braquages
-    double x[3];
-    double y[3];  // Limité à 100 points pour simplifier
+    float x[3];
+    float y[3];  // Limité à 100 points pour simplifier
 
     std::cout << "Braquage:" <<std::endl;
 
@@ -42,7 +42,7 @@ int main(){
 
     // vérifier s'il existe au moins trois points non alignés
     bool possible = false;
-    double cx = 0, cy = 0;  // coordonnées du centre potentiel
+    float cx = 0, cy = 0;  // coordonnées du centre potentiel
     for (int i = 0; i < n - 2; ++i) {
         for (int j = i + 1; j < n - 1; ++j) {
             for (int k = j + 1; k < n; ++k) {
