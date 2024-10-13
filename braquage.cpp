@@ -4,7 +4,12 @@
 bool points_Alignes(double x1, double y1, double x2, double y2, double x3, double y3) {
     // calcul du déterminant
     double determinant = x1 * (y2 - y3) + x2 * (y3 - y1) + x3 * (y1 - y2);
-    return determinant == 0;
+    if (determinant == 0.0){
+        return true;
+    }else{
+        return false;
+    }
+ 
 }
 
 // fonction pour calculer le centre du cercle circonscrit à trois points non alignés
