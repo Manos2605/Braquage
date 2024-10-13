@@ -2,7 +2,7 @@
 
 // fonction pour vérifier si trois points sont alignés
 bool points_Alignes(double x1, double y1, double x2, double y2, double x3, double y3) {
-    // calcul du déterminant
+    // utilise le déterminant de la matrice formée par ces trois points.
     double determinant = x1 * (y2 - y3) + x2 * (y3 - y1) + x3 * (y1 - y2);
     if (determinant == 0.0){
         return true;
