@@ -1,36 +1,34 @@
 #include<iostream>
 
-// fonction pour vérifier si trois points sont alignés
-bool points_Alignes(float x1, float y1, float x2, float y2, float x3, float y3) {
-    // calcul du déterminant
-    float determinant = (x2 - x1) * (y3 - y2) - (y2 - y1) * (x3 - x2);
-    if (determinant == 0.0f){
-        return true;
-    }else{
+// fonction pour calculer le centre du cercle circonscrit à trois points, si possible
+bool Centre_points(double x1, double y1, double x2, double y2, double x3, double y3, double &cx, double &cy) {
+    // calcul du déterminant pour vérifier l'alignement des points
+    double determinant = (x2 - x1) * (y3 - y2) - (y2 - y1) * (x3 - x2);
+    
+    // si les points sont alignés, retourner false
+    if (determinant == 0.0) {
         return false;
     }
- 
-}
 
-// fonction pour calculer le centre du cercle circonscrit à trois points non alignés
-void Centre_points(float x1, float y1, float x2, float y2, float x3, float y3, float &cx, float &cy) {
-    float d = 2 * (x1 * (y2 - y3) + x2 * (y3 - y1) + x3 * (y1 - y2));
+    // calcul du cercle circonscrit si les points ne sont pas alignés
+    double d = 2 * ((x2 - x1) * (y3 - y2) - (y2 - y1) * (x3 - x2));
 
     // coefficients pour trouver les coordonnées du centre
-    float ux = ((x1 * x1 + y1 * y1) * (y2 - y3) + (x2 * x2 + y2 * y2) * (y3 - y1) + (x3 * x3 + y3 * y3) * (y1 - y2)) / d;
-    float uy = ((x1 * x1 + y1 * y1) * (x3 - x2) + (x2 * x2 + y2 * y2) * (x1 - x3) + (x3 * x3 + y3 * y3) * (x2 - x1)) / d;
+    double ux = ((x1 * x1 + y1 * y1) * (y2 - y3) + (x2 * x2 + y2 * y2) * (y3 - y1) + (x3 * x3 + y3 * y3) * (y1 - y2)) / d;
+    double uy = ((x1 * x1 + y1 * y1) * (x3 - x2) + (x2 * x2 + y2 * y2) * (x1 - x3) + (x3 * x3 + y3 * y3) * (x2 - x1)) / d;
 
     cx = ux;
     cy = uy;
+
+    return true;
 }
 
 int main(){
     int n = 3;
 
-
     // tableaux pour stocker les coordonnées des lieux de braquages
-    float x[3];
-    float y[3];  // Limité à 100 points pour simplifier
+    double x[3];
+    double y[3];  // Limité à 100 points pour simplifier
 
     std::cout << "Braquage:" <<std::endl;
 
@@ -42,13 +40,12 @@ int main(){
 
     // vérifier s'il existe au moins trois points non alignés
     bool possible = false;
-    float cx = 0, cy = 0;  // coordonnées du centre potentiel
+    double cx = 0, cy = 0;  // coordonnées du centre potentiel
     for (int i = 0; i < n - 2; ++i) {
         for (int j = i + 1; j < n - 1; ++j) {
             for (int k = j + 1; k < n; ++k) {
-                if (!points_Alignes(x[i], y[i], x[j], y[j], x[k], y[k])) {
-                    // si les points ne sont pas alignés, calculer le centre du cercle circonscrit
-                    Centre_points(x[i], y[i], x[j], y[j], x[k], y[k], cx, cy);
+                if (Centre_points(x[i], y[i], x[j], y[j], x[k], y[k], cx, cy)) {
+                    // si les points ne sont pas alignés, le centre est calculé
                     possible = true;  // trois points non alignés trouvés
                     break;
                 }
@@ -62,7 +59,7 @@ int main(){
     if (possible) {
         std::cout << "Coordonnées possibles de la maison du brigand : (" << cx << ", " << cy << ")" << std::endl;
     } else {
-        std::cout << "Impossible de trouver la maison du brigand, toute les positions sont alignés." << std::endl;
+        std::cout << "Impossible de trouver la maison du brigand, toutes les positions sont alignées." << std::endl;
     }
 
     return 0;
