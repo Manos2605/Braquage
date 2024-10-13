@@ -27,7 +27,7 @@ c_y = \frac{(x_1^2 + y_1^2)(x_3 - x_2) + (x_2^2 + y_2^2)(x_1 - x_3) + (x_3^2 + y
 
 ### Exécution
 ```
--bash
+braquage :
 - Coordonnées 1 (x, y) : 1 2
 - Coordonnées 2 (x, y) : 3 4
 - Coordonnées 3 (x, y) : 5 6
