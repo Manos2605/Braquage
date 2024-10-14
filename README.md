@@ -1,9 +1,7 @@
 # Détection de la Maison du Brigand
 
 Ce projet en C++ détermine la position possible d'une maison de brigand en utilisant les coordonnées de plusieurs braquages. Il vérifie si au moins trois points donnés ne sont pas alignés et calcule ensuite le centre du cercle circonscrit à ces points non alignés. Video d'exécution presente sur X : 
-```
 https://x.com/Sonwa_Dimitry/status/1845764699675115757
-````
 
 ## Fonctionnalités
 - Saisir les coordonnées de trois points.
